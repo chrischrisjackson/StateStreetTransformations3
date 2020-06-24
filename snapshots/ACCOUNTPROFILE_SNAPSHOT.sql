@@ -7,6 +7,6 @@
     )
 }}
 
-select * from {{ source('CURRENT_RAW', 'ACCOUNTPROFILE') }}
+select * from {{ source('PUBLIC', 'ACCOUNTPROFILE') }}
 
 {% endsnapshot %}
