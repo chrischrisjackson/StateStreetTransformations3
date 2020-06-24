@@ -33,7 +33,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   enabled: true
-  database: 'SS_{{ env_var("SENV") }}'
+  database: 'STATE_STREET_DB'
   materialized: 'table'
   solovis_statestreet_transforms:
     DIMENSIONS:
@@ -44,13 +44,13 @@ models:
 snapshots:
   solovis_statestreet_transforms:
     target_schema: 'SNAPSHOTS'
-    target_database: 'SS_{{ env_var("SENV") }}'
+    target_database: 'STATE_STREET_DB'
     strategy: timestamp
 
 seeds:
   enabled: true
   quote_columns: true
-  database: 'SS_{{ env_var("SENV") }}'
+  database: 'STATE_STREET_DB'
   solovis_statestreet_transforms:
     schema: 'CURATED_DIMENSIONS'
     CLIENT_DIM:
