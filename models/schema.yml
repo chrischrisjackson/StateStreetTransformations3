@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: CURRENT_RAW
+    schema: CURRENT_RAW
+    tables:
+      - name: ACCOUNTPROFILE
+      - name: ACCOUNTSECURITIES
+      - name: CHARACTERISTICS
+      - name: CLASSIFICATIONS
+      - name: COUNTRYCALENDAR
+      - name: FXRATES
+      - name: HOLDINGS
+      - name: INDEXSECURITY
+      - name: INDEXTOTAL
+      - name: PORTFOLIONODE
+      - name: PORTFOLIOTOTAL
+      - name: SMF
+      - name: SPONSORBENCHMARK
+      - name: TRANSACTIONS

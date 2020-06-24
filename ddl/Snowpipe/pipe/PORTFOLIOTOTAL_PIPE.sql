@@ -1,0 +1,52 @@
+USE ROLE SS_DBA;
+
+CREATE
+OR REPLACE 
+PIPE SS_DEV.RAW.PORTFOLIOTOTAL_PIPE 
+AUTO_INGEST = TRUE 
+INTEGRATION = 'STATESTREET_INTEGRATION' 
+AS COPY INTO PORTFOLIOTOTAL
+  (
+    SPONSOR_ID,
+    DATATYPE,
+    ENTITY_CODE,
+    ENTITY_SHORT_NAME,
+    EFFECTIVE_DATE,
+    RETURN_TYPE,
+    BMV,
+    EMV,
+    ABAL,
+    INC,
+    GN_LS,
+    CSH_VAL_ADD,
+    INFLOWS,
+    OUTFLOWS,
+    NCF,
+    RETURN,
+    SOURCE_FILENAME,
+    SOURCE_FILE_ROW_NUMBER
+  )
+FROM
+  (
+    SELECT
+      T.$1,
+      T.$2,
+      T.$3,
+      T.$4,
+      T.$5,
+      T.$6,
+      T.$7,
+      T.$8,
+      T.$9,
+      T.$10,
+      T.$11,
+      T.$12,
+      T.$13,
+      T.$14,
+      T.$15,
+      T.$16,
+      METADATA$FILENAME,
+      METADATA$FILE_ROW_NUMBER
+    FROM
+      @STATESTREET_AZURE_STAGE_PORTFOLIOTOTAL (FILE_FORMAT => SS_FILEFORMAT_CSV) T
+  );

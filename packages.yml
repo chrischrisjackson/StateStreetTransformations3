@@ -1,0 +1,7 @@
+#
+#   https://docs.getdbt.com/docs/package-management
+#   
+
+packages:
+    - package: fishtown-analytics/dbt_utils
+      version: 0.3.0

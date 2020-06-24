@@ -1,0 +1,29 @@
+parameters:
+  name: ''
+
+stages:
+- stage: ${{ parameters.name }}
+  displayName: Deploy to ${{ parameters.name }}
+  jobs:
+  - job: Deploy_${{ parameters.name }}
+    displayName: Deployment job to ${{ parameters.name }}
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+    - group: "Snowflake Devops"
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.6'
+    - script: 
+        pip install dbt
+      displayName: Install DBT
+    - bash: |
+        dbt deps --profiles-dir $DBT_PROFILES_DIR
+        dbt seed --profiles-dir $DBT_PROFILES_DIR
+        dbt snapshot --profiles-dir $DBT_PROFILES_DIR
+        dbt run --profiles-dir $DBT_PROFILES_DIR
+      displayName: Running DBT
+      env:
+        #secrets must be mapped to env
+        SNOWSQL_PASSWORD: $(SNOWSQL_PASSWORD)

@@ -1,0 +1,24 @@
+name: StateStreetTransformations-Pipe
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build artifacts
+  jobs:
+  - job: Create_Artifacts
+    displayName: Create dbt artifacts
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.6'
+
+- template: stages/env_deployment.yml
+  parameters:
+    name: DEV
