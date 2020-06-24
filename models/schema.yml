@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: CURRENT_RAW
-    schema: CURRENT_RAW
+  - name: PUBLIC
+    schema: PUBLIC
     tables:
       - name: ACCOUNTPROFILE
       - name: ACCOUNTSECURITIES
