@@ -7,6 +7,6 @@
     )
 }}
 
-select * from {{ source(''PUBLIC', 'SMF') }}
+select * from {{ source('PUBLIC', 'SMF') }}
 
 {% endsnapshot %}
