@@ -7,6 +7,6 @@
     )
 }}
 
-select * from {{ source('CURRENT_RAW', 'TRANSACTIONS') }}
+select * from {{ source('PUBLIC', 'TRANSACTIONS') }}
 
 {% endsnapshot %}
