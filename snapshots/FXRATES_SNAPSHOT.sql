@@ -7,6 +7,6 @@
     )
 }}
 
-select * from {{ source('CURRENT_RAW', 'FXRATES') }}
+select * from {{ source('PUBLIC', 'FXRATES') }}
 
 {% endsnapshot %}
